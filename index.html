@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#020617">
   <title>Portofolio | Afriandy Agus Lihanda</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
   >
   <link
     rel="stylesheet"
@@ -19,16 +22,20 @@
       color-scheme: dark;
       --bg: #020617;
       --panel: #0a1c2c;
-      --edge: #29495c;
+      --line: #29495c;
       --text: #e5e7eb;
-      --primary: #38bdf8;
+      --muted: #c0d2df;
+      --cyan: #38bdf8;
       --signal: #6ce4fa;
-      --cyan: #67d9ff;
       --ice: #d9f2ff;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
     }
 
     body {
@@ -38,42 +45,115 @@
       display: grid;
       place-items: center;
       padding: 24px 16px;
-      background:
-        radial-gradient(ellipse at 80% 20%, #11628b36, transparent 48%),
-        var(--bg);
-      color: var(--text);
       font-family: "Poppins", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 74% 28%, #103b554d, transparent 45%),
+        radial-gradient(ellipse at 20% 82%, #11355b40, transparent 40%),
+        var(--bg);
+    }
+
+    /* Garis lintasan menjadi latar di belakang kartu. */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .track {
+      position: absolute;
+      width: clamp(280px, 56vw, 800px);
+      aspect-ratio: 1;
+      border: 1px solid rgb(103 217 255 / 13%);
+      border-radius: 34%;
+      box-shadow:
+        0 0 0 9px var(--bg),
+        0 0 0 10px rgb(103 217 255 / 9%),
+        0 0 0 20px var(--bg),
+        0 0 0 21px rgb(103 217 255 / 6%);
+    }
+
+    .track-one {
+      top: -36%;
+      right: -19%;
+      rotate: 32deg;
+    }
+
+    .track-two {
+      bottom: -38%;
+      left: -22%;
+      rotate: -26deg;
+    }
+
+    /* Wrapper mengatur opening, kartu mengatur gerakan melayang. */
+    .profile-wrap {
+      position: relative;
+      width: min(100%, 390px);
     }
 
     .card {
-      width: min(100%, 390px);
-      padding: 32px 24px;
+      position: relative;
+      isolation: isolate;
+      padding: 32px 26px 24px;
+      overflow: hidden;
       text-align: center;
-      background: var(--panel);
-      border: 1px solid var(--edge);
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgb(0 0 0 / 40%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #143b50 0%, transparent 52%),
+        var(--panel);
+      box-shadow:
+        inset 0 1px 0 rgb(217 242 255 / 8%),
+        0 20px 55px rgb(0 0 0 / 32%);
     }
 
-    /* Foto profil */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 16%;
+      right: 16%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--signal), transparent);
+      box-shadow: 0 0 14px rgb(108 228 250 / 40%);
+      pointer-events: none;
+    }
+
     .portrait {
       position: relative;
+      width: 106px;
+      aspect-ratio: 1;
       display: grid;
       place-items: center;
-      width: 120px;
-      height: 120px;
       margin: 0 auto 16px;
-      overflow: hidden;
-      border: 4px solid var(--cyan);
-      border-radius: 50%;
-      background: linear-gradient(140deg, #1b465e, #0b2231);
-      color: var(--ice);
-      font-size: 32px;
-      font-weight: 600;
-      box-shadow: 0 0 18px rgb(56 189 248 / 18%);
+      isolation: isolate;
     }
 
-    .profile-img {
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgb(103 217 255 / 27%);
+      border-top-color: var(--signal);
+      border-bottom-color: var(--cyan);
+      border-radius: 50%;
+    }
+
+    .portrait-inner {
+      position: absolute;
+      inset: 5px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #20516a, #0b2231);
+      color: var(--ice);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .portrait img {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -81,158 +161,336 @@
       object-fit: cover;
     }
 
-    /* Nama dan deskripsi */
     h1 {
       margin: 0;
-      font-size: 1.45rem;
-      line-height: 1.3;
       color: var(--ice);
+      font-size: 1.48rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
     }
 
     @supports (background-clip: text) {
       h1 {
-        background: linear-gradient(110deg, var(--cyan), var(--ice));
+        background: linear-gradient(105deg, #80e2ff 5%, #effaff 80%);
         background-clip: text;
         color: transparent;
       }
     }
 
-    p {
-      margin: 10px auto 22px;
-      font-size: 1rem;
-      line-height: 1.6;
+    .bio {
+      max-width: 34ch;
+      margin: 10px auto 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      text-wrap: pretty;
     }
 
     a {
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Tombol portofolio */
     .about-btn {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--signal));
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 46px;
+      padding: 10px 14px;
+      overflow: hidden;
+      border-radius: 13px;
+      background: linear-gradient(105deg, var(--cyan), var(--signal));
       color: var(--bg);
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.4;
     }
 
-    .about-btn:hover {
-      box-shadow: 0 8px 24px rgb(56 189 248 / 30%);
-    }
-
-    /* Media sosial */
     .socials {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 9px;
     }
 
     .socials a {
-      padding: 9px 12px;
-      border: 1px solid var(--edge);
-      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      min-width: 0;
+      min-height: 44px;
+      padding: 7px 3px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
       background: #0b2231;
       color: var(--ice);
-      font-size: 0.875rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.25;
     }
 
-    .socials a:hover {
-      background: var(--primary);
-      color: var(--bg);
+    .socials i {
+      color: var(--signal);
+      font-size: 0.95rem;
     }
 
     a:focus-visible {
       outline: 2px solid var(--signal);
-      outline-offset: 4px;
+      outline-offset: 3px;
     }
 
-    /* Animasi mengikuti preferensi gerakan pengunjung */
-    @media (prefers-reduced-motion: no-preference) {
-      .card {
-        animation: float 4s ease-in-out infinite;
+    @media (hover: hover) {
+      .about-btn:hover {
+        box-shadow: 0 5px 18px rgb(56 189 248 / 24%);
       }
 
-      .card:hover,
-      .card:focus-within {
+      .socials a:hover {
+        border-color: var(--signal);
+        background: #143247;
+      }
+    }
+
+    /* HP: kartu lebih ramping, tombol tetap nyaman disentuh. */
+    @media (max-width: 480px) {
+      .profile-wrap {
+        width: min(100%, 336px);
+      }
+
+      .card {
+        padding: 23px 18px 18px;
+        border-radius: 20px;
+      }
+
+      .portrait {
+        width: clamp(76px, 22vw, 88px);
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        font-size: clamp(1.14rem, 5vw, 1.32rem);
+      }
+
+      .bio {
+        margin: 8px auto 16px;
+        font-size: 0.85rem;
+        line-height: 1.55;
+      }
+
+      .about-btn {
+        min-height: 44px;
+        font-size: 0.82rem;
+      }
+
+      .socials {
+        gap: 6px;
+      }
+
+      .socials a {
+        flex-direction: column;
+        gap: 4px;
+        min-height: 48px;
+        font-size: 0.74rem;
+      }
+    }
+
+    /* Opening singkat, lalu gerakan melayang yang lembut. */
+    @media (prefers-reduced-motion: no-preference) {
+      .profile-wrap {
+        animation: open-card 680ms cubic-bezier(.2, .8, .2, 1) backwards;
+      }
+
+      .card {
+        animation: float-card 6s ease-in-out 1.1s infinite;
+      }
+
+      .card::before {
+        animation: draw-line 700ms ease-out backwards;
+      }
+
+      .portrait,
+      h1,
+      .bio,
+      .actions {
+        animation: rise-in 520ms cubic-bezier(.2, .8, .2, 1) backwards;
+      }
+
+      .portrait { animation-delay: 140ms; }
+      h1        { animation-delay: 220ms; }
+      .bio      { animation-delay: 290ms; }
+      .actions  { animation-delay: 360ms; }
+
+      .portrait::before {
+        animation: orbit 14s linear infinite;
+      }
+
+      .track {
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+
+      .track-two {
+        animation-delay: -8s;
+      }
+
+      .about-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          105deg,
+          transparent 35%,
+          rgb(255 255 255 / 32%) 50%,
+          transparent 65%
+        );
+        animation: shine 850ms ease-out 650ms both;
+      }
+
+      .profile-wrap:active .card,
+      .profile-wrap:focus-within .card {
         animation-play-state: paused;
       }
 
-      a {
-        transition:
-          transform 0.25s,
-          background-color 0.25s,
-          box-shadow 0.25s;
-      }
-
-      a:hover {
-        transform: translateY(-2px);
-      }
-
-      @keyframes float {
-        50% {
-          transform: translateY(-8px);
+      @media (hover: hover) {
+        .profile-wrap:hover .card {
+          animation-play-state: paused;
         }
+      }
+
+      @keyframes open-card {
+        from {
+          opacity: 0;
+          clip-path: inset(49% 0 round 24px);
+          transform: translateY(7px);
+        }
+        to {
+          opacity: 1;
+          clip-path: inset(0 round 0);
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes draw-line {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+
+      @keyframes rise-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes float-card {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-5px); }
+      }
+
+      @keyframes drift {
+        from { transform: translateY(-8px); }
+        to   { transform: translateY(12px); }
+      }
+
+      @keyframes orbit {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes shine {
+        from { transform: translateX(-110%); }
+        to   { transform: translateX(110%); }
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="card">
-    <!-- Untuk mengganti foto, ubah alamat pada src. -->
-    <div class="portrait">
-      <span aria-hidden="true">AAL</span>
-      <img
-        class="profile-img"
-        src="img/FOTOPROFILGUA1.jpeg"
-        alt="Foto Afriandy Agus Lihanda"
-        onerror="this.onerror = () => this.remove(); this.src = 'https://raw.githubusercontent.com/afriandyaguslihanda/portofolio/main/img/FOTOPROFILGUA1.jpeg';"
-      >
-    </div>
+  <div class="backdrop" aria-hidden="true">
+    <div class="track track-one"></div>
+    <div class="track track-two"></div>
+  </div>
 
-    <h1>Afriandy Agus Lihanda</h1>
+  <main class="profile-wrap">
+    <article class="card" aria-labelledby="profile-name">
+      <div class="portrait">
+        <div class="portrait-inner">
+          <span aria-hidden="true">AAL</span>
 
-    <p>
-      Seorang lulusan Sarjana Ilmu Politik yang memiliki ketertarikan
-      di bidang wirausaha dan olahraga.
-    </p>
+          <!-- Ganti src di bawah jika nama file foto berubah. -->
+          <img
+            id="profile-photo"
+            src="img/FOTOPROFILGUA1.jpeg"
+            alt="Foto Afriandy Agus Lihanda"
+          >
+        </div>
+      </div>
 
-    <a class="about-btn" href="https://lebihlanjut.vercel.app/">
-      Tentang Afriandy Lebih Lanjut
-    </a>
+      <h1 id="profile-name">Afriandy Agus Lihanda</h1>
 
-    <nav class="socials" aria-label="Media sosial">
-      <a
-        href="https://www.instagram.com/afriandyal/"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="fab fa-instagram" aria-hidden="true"></i>
-        Instagram
-      </a>
+      <p class="bio">
+        Seorang lulusan Sarjana Ilmu Politik yang memiliki ketertarikan
+        di bidang wirausaha dan olahraga.
+      </p>
 
-      <a
-        href="https://www.tiktok.com/@afriandyagus"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="fab fa-tiktok" aria-hidden="true"></i>
-        TikTok
-      </a>
+      <div class="actions">
+        <a class="about-btn" href="https://lebihlanjut.vercel.app/">
+          Tentang Afriandy Lebih Lanjut
+        </a>
 
-      <a
-        href="https://www.linkedin.com/in/afriandy-agus-lihanda"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="fab fa-linkedin" aria-hidden="true"></i>
-        LinkedIn
-      </a>
-    </nav>
+        <nav class="socials" aria-label="Media sosial Afriandy">
+          <a
+            href="https://www.instagram.com/afriandyal/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+          </a>
+
+          <a
+            href="https://www.tiktok.com/@afriandyagus"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+            <span>TikTok</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/afriandy-agus-lihanda"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <span>LinkedIn</span>
+          </a>
+        </nav>
+      </div>
+    </article>
   </main>
+
+  <script>
+    // Gunakan foto repositori jika file lokal tidak tersedia.
+    // Inisial AAL terlihat jika kedua sumber foto gagal dimuat.
+    const photo = document.getElementById("profile-photo");
+    const backupPhoto =
+      "https://raw.githubusercontent.com/afriandyaguslihanda/portofolio/main/img/FOTOPROFILGUA1.jpeg";
+
+    function useBackupPhoto() {
+      if (photo.src === backupPhoto) {
+        photo.remove();
+        return;
+      }
+
+      photo.src = backupPhoto;
+    }
+
+    photo.addEventListener("error", useBackupPhoto);
+
+    if (photo.complete && photo.naturalWidth === 0) {
+      useBackupPhoto();
+    }
+  </script>
 </body>
 </html>
