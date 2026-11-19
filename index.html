@@ -1,188 +1,238 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self';
-               img-src 'self' https:;
-               style-src 'self' https: 'unsafe-inline';
-               script-src 'self' https:;
-               font-src https:;
-               connect-src https:;">
-               
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portofolio | Afriandy Agus Lihanda</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+  >
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
 
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #020617;
+      --panel: #0a1c2c;
+      --edge: #29495c;
+      --text: #e5e7eb;
+      --primary: #38bdf8;
+      --signal: #6ce4fa;
+      --cyan: #67d9ff;
+      --ice: #d9f2ff;
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #e0f2ff, #b3e5ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+      background:
+        radial-gradient(ellipse at 80% 20%, #11628b36, transparent 48%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Poppins", Arial, sans-serif;
     }
 
     .card {
-      background: white;
-      width: 340px;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      width: min(100%, 390px);
+      padding: 32px 24px;
       text-align: center;
-      animation: float 4s ease-in-out infinite;
+      background: var(--panel);
+      border: 1px solid var(--edge);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgb(0 0 0 / 40%);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    /* Foto profil */
+    .portrait {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      border: 4px solid var(--cyan);
+      border-radius: 50%;
+      background: linear-gradient(140deg, #1b465e, #0b2231);
+      color: var(--ice);
+      font-size: 32px;
+      font-weight: 600;
+      box-shadow: 0 0 18px rgb(56 189 248 / 18%);
     }
 
     .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 4px solid #6ec6ff;
-      margin-bottom: 15px;
     }
 
+    /* Nama dan deskripsi */
     h1 {
-      font-size: 22px;
-      font-weight: 600;
-      color: #1e88e5;
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.3;
+      color: var(--ice);
+    }
+
+    @supports (background-clip: text) {
+      h1 {
+        background: linear-gradient(110deg, var(--cyan), var(--ice));
+        background-clip: text;
+        color: transparent;
+      }
     }
 
     p {
-      font-size: 14px;
-      color: #555;
-      margin: 10px 0 20px;
+      margin: 10px auto 22px;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
+    a {
+      text-decoration: none;
+    }
+
+    /* Tombol portofolio */
+    .about-btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--signal));
+      color: var(--bg);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .about-btn:hover {
+      box-shadow: 0 8px 24px rgb(56 189 248 / 30%);
+    }
+
+    /* Media sosial */
     .socials {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
+      gap: 8px;
+      margin-top: 16px;
     }
 
     .socials a {
-      text-decoration: none;
-      padding: 10px 16px;
+      padding: 9px 12px;
+      border: 1px solid var(--edge);
       border-radius: 30px;
-      background: #e3f2fd;
-      color: #1e88e5;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      background: #0b2231;
+      color: var(--ice);
+      font-size: 0.875rem;
     }
 
     .socials a:hover {
-      background: #1e88e5;
-      color: white;
-      transform: scale(1.1);
+      background: var(--primary);
+      color: var(--bg);
     }
 
-    footer {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #aaa;
+    a:focus-visible {
+      outline: 2px solid var(--signal);
+      outline-offset: 4px;
     }
-    .about-btn {
-  display: inline-block;
-  margin-bottom: 15px;
-  padding: 12px 22px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #1e88e5, #6ec6ff);
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
 
-.about-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(30, 136, 229, 0.4);
-}
+    /* Animasi mengikuti preferensi gerakan pengunjung */
+    @media (prefers-reduced-motion: no-preference) {
+      .card {
+        animation: float 4s ease-in-out infinite;
+      }
 
-/* KOLOM ABOUT */
-.about-section {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 16px;
-  background: #f4fbff;
-  text-align: left;
-  animation: fadeUp 0.8s ease;
-}
+      .card:hover,
+      .card:focus-within {
+        animation-play-state: paused;
+      }
 
-.about-section h2 {
-  font-size: 16px;
-  color: #1e88e5;
-  margin-bottom: 8px;
-}
+      a {
+        transition:
+          transform 0.25s,
+          background-color 0.25s,
+          box-shadow 0.25s;
+      }
 
-.about-section p {
-  font-size: 13px;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
+      a:hover {
+        transform: translateY(-2px);
+      }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+      @keyframes float {
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+    }
   </style>
 </head>
+
 <body>
-
-  <div class="card">
-    <!-- GANTI FOTO DI SRC -->
-    <img src="img/FOTOPROFILGUA1.jpeg" alt="Foto Profil" class="profile-img" />
-
-    <h1>Afriandy Agus Lihanda</h1>
-    <p>Seorang lulusan Sarjana Ilmu Politik yang memiliki ketertarikan di bidang wirausaha dan olahraga.</p>
-
-    <a href="https://lebihlanjut.vercel.app/" class="about-btn">Tentang Afriandy Lebih Lanjut</a>
-
-    <div class="socials">
-      <a href="https://www.instagram.com/afriandyal?igsh=Z2JwcXFoMmtrdW5v&utm_source=qr" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
-      <a href="https://www.tiktok.com/@afriandyagus?_r=1&_t=ZS-93I3H75bxP6" target="_blank">
-        <i class="fab fa-tiktok"></i> TikTok
-      </a>
-      <a href="https://www.linkedin.com/in/afriandy-agus-lihanda" target="_blank">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
+  <main class="card">
+    <!-- Untuk mengganti foto, ubah alamat pada src. -->
+    <div class="portrait">
+      <span aria-hidden="true">AAL</span>
+      <img
+        class="profile-img"
+        src="img/FOTOPROFILGUA1.jpeg"
+        alt="Foto Afriandy Agus Lihanda"
+        onerror="this.onerror = () => this.remove(); this.src = 'https://raw.githubusercontent.com/afriandyaguslihanda/portofolio/main/img/FOTOPROFILGUA1.jpeg';"
+      >
     </div>
 
-    <footer>
-    </footer>
-  </div>
+    <h1>Afriandy Agus Lihanda</h1>
 
+    <p>
+      Seorang lulusan Sarjana Ilmu Politik yang memiliki ketertarikan
+      di bidang wirausaha dan olahraga.
+    </p>
+
+    <a class="about-btn" href="https://lebihlanjut.vercel.app/">
+      Tentang Afriandy Lebih Lanjut
+    </a>
+
+    <nav class="socials" aria-label="Media sosial">
+      <a
+        href="https://www.instagram.com/afriandyal/"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+        Instagram
+      </a>
+
+      <a
+        href="https://www.tiktok.com/@afriandyagus"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fab fa-tiktok" aria-hidden="true"></i>
+        TikTok
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/afriandy-agus-lihanda"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+        LinkedIn
+      </a>
+    </nav>
+  </main>
 </body>
 </html>
